@@ -2,12 +2,9 @@ package ddms.api.controller;
 
 import com.google.common.collect.ImmutableList;
 import ddms.api.entity.DesignEntity;
-import ddms.api.repository.DesignRepository;
+import ddms.api.service.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Deb
@@ -18,16 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class DesignController {
 
     @Autowired
-    private DesignRepository designRepo;
+    private DesignService designService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public DesignEntity addDesign(@RequestBody DesignEntity designEntity) {
-        return designRepo.save(designEntity);
+        return designService.addDesign(designEntity);
     }
 
     @RequestMapping(value = "/findAll", method = RequestMethod.POST)
     public ImmutableList<DesignEntity> findAll() {
-        return ImmutableList.copyOf(designRepo.findAll());
+        return designService.findAll();
     }
 
+    @RequestMapping(value = "/find/{id}", method = RequestMethod.POST)
+    public DesignEntity find(@PathVariable(value = "id") String id) {
+        return designService.find(id);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public DesignEntity update(@RequestBody DesignEntity entity) {
+        return designService.update(entity);
+    }
 }
