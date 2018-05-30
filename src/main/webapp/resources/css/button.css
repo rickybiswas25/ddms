@@ -1,0 +1,23 @@
+.buttonClass {
+    background: #0066A2;
+    color: white;
+    border-style: outset;
+    border-color: #0066A2;
+    height: 30px;
+    width: 100px;
+    font: bold 15px arial, sans-serif;
+}
+
+.rowRedClass {
+    background: #FF0000;
+}
+
+.rowOrangeClass {
+    background: #FF4500;
+}
+
+.rowGreenClass {
+    background: #008000;
+}
+
+
