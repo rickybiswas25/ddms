@@ -48,6 +48,16 @@ public class DesignView {
     }
 
     public DesignValue addDesign() {
-        return designService.addDesign(designValue);
+        DesignValue design = designService.addDesign(designValue);
+        init();
+        return design;
     }
+
+    public DesignValue updateDesign(DesignValue value) {
+        DesignValue design = designService.update(value);
+        init();
+        return design;
+    }
+
+
 }

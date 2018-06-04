@@ -4,11 +4,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <title>Add orders</title>
-    <h:outputStylesheet library="css" name="popup.css"/>
+    <title>Add designs</title>
 </h:head>
 <body>
-<ui:include src="/templates/header.xhtml" />
+<ui:include src="/templates/header.xhtml"/>
 <h:form>
     <div style="margin-left: 20%;margin-right: 10%;">
         <div class="ui-g ui-fluid">
@@ -27,14 +26,14 @@
                     <p:inputText value="#{designView.designValue.fabricConsumption}"/>
 
                 </p:panelGrid>
-                <p:commandButton id="addBtn" widgetVar="addBtn" styleClass="buttonClass" value="Add" actionListener="#{designView.addDesign()}" update="ordersData"/>
+                <p:commandButton id="addBtn" widgetVar="addBtn" styleClass="buttonClass" value="Add"
+                                 actionListener="#{designView.addDesign()}" update="designData"/>
             </p:fieldset>
         </div>
     </div>
     <div style="margin-left: 20%;margin-right: 10%;margin-top: 20px;">
-        <p:commandButton id="designDetailsPage" widgetVar="designDetailsPage" styleClass="buttonClass" value="All" actionListener="#{design.findAll}" update="ordersData"/>
-        <p:dataTable value="#{designView.findAll()}" var="list" editable="true" editMode="cell" widgetVar="cellDsign"
-                     id="ordersData"
+        <p:dataTable value="#{designView.findAll()}" var="list" editable="true" editMode="cell" widgetVar="cellDesign"
+                     id="designData"
                      styleClass="order-table"
                      headerClass="order-table-header"
                      rowClasses="order-table-odd-row,order-table-even-row" paginator="true" rows="20"
@@ -48,15 +47,16 @@
             </p:column>
 
             <p:column headerText="Description">
-                <p:inputText id="description" name = "description" value="#{list.description}"/>
+                <p:inputText id="description" name="description" value="#{list.description}"/>
             </p:column>
 
             <p:column headerText="Fabric consumption">
-                <p:inputText id="fabricConsumption" name = "fabricConsumption" value="#{list.fabricConsumption}"/>
+                <p:inputText id="fabricConsumption" name="fabricConsumption" value="#{list.fabricConsumption}"/>
             </p:column>
 
             <p:column>
-                <p:commandButton id="updateBtn" widgetVar="updateBtn" styleClass="buttonClass" value="Update" actionListener="#{design.updateOrder(list)}" update="ordersData" />
+                <p:commandButton id="updateBtn" widgetVar="updateBtn" styleClass="buttonClass" value="Update"
+                                 actionListener="#{designView.updateDesign(list)}" update="designData"/>
             </p:column>
         </p:dataTable>
     </div>

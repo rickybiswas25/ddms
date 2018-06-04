@@ -1,12 +1,9 @@
 package ddms.api.value;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Created by Deb
  * Date : 04/06/2018.
  */
-@Component
 public class DesignValue {
     private String code;
     private String description;
