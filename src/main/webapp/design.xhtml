@@ -1,40 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
     <title>Add orders</title>
     <h:outputStylesheet library="css" name="popup.css"/>
 </h:head>
 <body>
-<ui:include src="/templates/header.xhtml" />
+
 <h:form>
-    <div style="margin-left: 20%;margin-right: 10%;">
-        <div class="ui-g ui-fluid">
-            <p:growl id="messages"/>
-            <p:fieldset legend="Add design">
-                <p:panelGrid columns="2">
-
-                    <p:outputLabel value="Design code: "/>
-                    <p:inputText value="#{design.designEntity.code}"/>
-
-                    <p:outputLabel value="Description: "/>
-                    <p:inputText value="#{design.designEntity.description}"/>
-
-
-                    <p:outputLabel value="Fabric Consumptions"/>
-                    <p:inputText value="#{design.designEntity.fabricConsumptions}"/>
-
-                </p:panelGrid>
-                <p:commandButton id="addBtn" widgetVar="addBtn" styleClass="buttonClass" value="Add" actionListener="#{design.addDesign}" update="ordersData"/>
-            </p:fieldset>
-        </div>
-    </div>
     <div style="margin-left: 20%;margin-right: 10%;margin-top: 20px;">
-        <a class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only buttonClass" href="#add_pop_up_form">Filter</a>
         <p:commandButton id="designDetailsPage" widgetVar="designDetailsPage" styleClass="buttonClass" value="All" actionListener="#{design.findAll}" update="ordersData"/>
-        <p:dataTable value="#{design.designs}" var="list" editable="true" editMode="cell" widgetVar="cellCars"
+        <p:dataTable value="#{designView.findAll()}" var="list" editable="true" editMode="cell" widgetVar="cellCars"
                      id="ordersData"
                      styleClass="order-table"
                      headerClass="order-table-header"
@@ -63,17 +41,5 @@
     </div>
 
 </h:form>
-
-<div id="add_pop_up_form" class="overlay">
-    <div class="popup">
-        <h2>Filter form</h2>
-        <h:form enctype="multipart/form-data">
-            <div><a class="close" href="#">X</a></div><br/>
-            <div> <p:outputLabel value="Design codes: "/>
-                <p:inputText value="#{design.filterDesigns}"/></div><br/>
-            <div><p:commandButton value="Find" action="#{design.findFilterDesigns}" /></div><br/>
-        </h:form>
-    </div>
-</div>
 </body>
 </html>
