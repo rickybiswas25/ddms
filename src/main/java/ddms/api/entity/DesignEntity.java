@@ -1,5 +1,8 @@
 package ddms.api.entity;
 
+import ddms.api.converter.ValueConverter;
+import ddms.api.value.DesignValue;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "design")
-public class DesignEntity {
+public class DesignEntity implements ValueConverter<DesignValue> {
     @Id
     private String code;
     private String description;
@@ -40,5 +43,21 @@ public class DesignEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public DesignValue toValue() {
+        DesignValue design = new DesignValue();
+        design.setCode(this.getCode());
+        design.setDescription(this.getDescription());
+        design.setFabricConsumption(this.getFabricConsumption());
+        return design;
+    }
+
+    @Override
+    public void fromValue(DesignValue value) {
+        this.setCode(value.getCode());
+        this.setDescription(value.getDescription());
+        this.setFabricConsumption(value.getFabricConsumption());
     }
 }

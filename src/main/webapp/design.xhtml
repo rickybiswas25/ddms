@@ -1,18 +1,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
     <title>Add orders</title>
     <h:outputStylesheet library="css" name="popup.css"/>
 </h:head>
 <body>
-
+<ui:include src="/templates/header.xhtml" />
 <h:form>
+    <div style="margin-left: 20%;margin-right: 10%;">
+        <div class="ui-g ui-fluid">
+            <p:growl id="messages"/>
+            <p:fieldset legend="Add design">
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel value="Design code: "/>
+                    <p:inputText value="#{designView.designValue.code}"/>
+
+                    <p:outputLabel value="Description: "/>
+                    <p:inputText value="#{designView.designValue.description}"/>
+
+
+                    <p:outputLabel value="Fabric Consumptions"/>
+                    <p:inputText value="#{designView.designValue.fabricConsumption}"/>
+
+                </p:panelGrid>
+                <p:commandButton id="addBtn" widgetVar="addBtn" styleClass="buttonClass" value="Add" actionListener="#{designView.addDesign()}" update="ordersData"/>
+            </p:fieldset>
+        </div>
+    </div>
     <div style="margin-left: 20%;margin-right: 10%;margin-top: 20px;">
         <p:commandButton id="designDetailsPage" widgetVar="designDetailsPage" styleClass="buttonClass" value="All" actionListener="#{design.findAll}" update="ordersData"/>
-        <p:dataTable value="#{designView.findAll()}" var="list" editable="true" editMode="cell" widgetVar="cellCars"
+        <p:dataTable value="#{designView.findAll()}" var="list" editable="true" editMode="cell" widgetVar="cellDsign"
                      id="ordersData"
                      styleClass="order-table"
                      headerClass="order-table-header"
@@ -31,7 +52,7 @@
             </p:column>
 
             <p:column headerText="Fabric consumption">
-                <p:inputText id="fabricConsumption" name = "fabricConsumption" value="#{list.fabricConsumptions}"/>
+                <p:inputText id="fabricConsumption" name = "fabricConsumption" value="#{list.fabricConsumption}"/>
             </p:column>
 
             <p:column>
